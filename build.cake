@@ -102,13 +102,20 @@ Task("Inspect")
 	.IsDependentOn("Build")
 	.Does(() => 
 {
-	InspectCode(solution, new InspectCodeSettings()
-	{
-		SolutionWideAnalysis = true,
-		Profile = "./Conductor.sln.DotSettings",
-		OutputFile = metricsResults,
-		ThrowExceptionOnFindingViolations = false
-	});
+    if (IsRunningOnUnix())
+    {
+        Information("Skipping code inspection, as ReSharper does not support *nix.");
+    }
+    else
+    {
+        InspectCode(solution, new InspectCodeSettings()
+        {
+            SolutionWideAnalysis = true,
+            Profile = "./Conductor.sln.DotSettings",
+            OutputFile = metricsResults,
+            ThrowExceptionOnFindingViolations = false
+        });
+    }
 });
 
 Task("Package")
