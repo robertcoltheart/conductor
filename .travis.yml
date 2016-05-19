@@ -1,0 +1,4 @@
+language: csharp
+solution: Conductor.sln
+script:
+    - ./build.sh

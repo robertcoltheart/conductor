@@ -1,43 +1,45 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Conductor
 {
-    [TestClass]
+    [TestFixture]
     public class InitializeModuleExceptionTests
     {
-        [TestMethod]
+        [Test]
         public void IsTypeOfException()
         {
-            Assert.IsTrue(typeof(Exception).IsAssignableFrom(typeof(InitializeModuleException)), "Type is not an exception.");
+            var exception = new InitializeModuleException();
+
+            Assert.That(exception, Is.AssignableTo<Exception>(), "Type is not an exception.");
         }
 
-        [TestMethod]
+        [Test]
         public void InnerExceptionSet()
         {
             var innerException = new Exception();
             var exception = new InitializeModuleException("msg", innerException);
 
-            Assert.AreSame(innerException, exception.InnerException);
+            Assert.That(exception.InnerException, Is.SameAs(innerException));
         }
 
-        [TestMethod]
+        [Test]
         public void HasMessage()
         {
             var exception = new InitializeModuleException("msg");
 
-            Assert.AreEqual("msg", exception.Message);
+            Assert.That(exception.Message, Is.EqualTo("msg"));
         }
 
-        [TestMethod]
+        [Test]
         public void IsSerializableDecorated()
         {
-            Assert.IsTrue(typeof(InitializeModuleException).GetCustomAttributes(typeof(SerializableAttribute), true).Length == 1, "Type must be serializable.");
+            Assert.That(typeof(InitializeModuleException).GetCustomAttributes(typeof(SerializableAttribute), true), Has.Length.EqualTo(1), "Type must be serializable.");
         }
 
-        [TestMethod]
+        [Test]
         public void IsSerializable()
         {
             var exception = new InitializeModuleException();
@@ -59,7 +61,7 @@ namespace Conductor
                 Assert.Fail("Type must be serializable.");
             }
 
-            Assert.IsNotNull(exception, "Type could not be deserialized.");
+            Assert.That(exception, Is.Not.Null, "Type could not be deserialized.");
         }
     }
 }
