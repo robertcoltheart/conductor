@@ -101,8 +101,8 @@ Task("Test")
         
         Information("Uploading test results to " + url);
         
-        //using (var webClient = new System.Net.WebClient())
-        //    webClient.UploadFile(url, testResults);
+        using (var webClient = new System.Net.WebClient())
+            webClient.UploadFile(url, testResults);
     }
 });
 
