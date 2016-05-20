@@ -1,6 +1,8 @@
 build_script:
   - ps: .\build.ps1
 
+test: off
+
 notifications:
   - provider: Email
     on_build_success: false
