@@ -99,6 +99,7 @@ Task("Test")
         var baseUri = EnvironmentVariable("APPVEYOR_URL").TrimEnd('/');
         string url = string.Format("{0}/api/testresults/nunit3/{1}", baseUri, environment.JobId);
         
+        Information("AppVeyor API is " + environment.ApiUrl);
         Information("Uploading test results to " + url);
         
         using (var webClient = new System.Net.WebClient())
