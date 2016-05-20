@@ -29,7 +29,6 @@ var artifacts = Directory("./artifacts");
 var solution = File("./Conductor.sln");
 var testResults = artifacts + File("TestResults.xml");
 var metricsResults = artifacts + File("MetricsResults.xml");
-var docs = artifacts + Directory("docs");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -39,9 +38,6 @@ Task("Clean")
 {
 	CleanDirectories("./src/**/bin");
 	CleanDirectories("./src/**/obj");
-	
-	DeleteFiles("./docs/api/*.yml");
-	DeleteFiles("./docs/api/.manifest");
 	
 	if (DirectoryExists(artifacts))
 		DeleteDirectory(artifacts, true);
@@ -91,11 +87,23 @@ Task("Build")
 Task("Test")
 	.IsDependentOn("Build")
 	.Does(() => 
-{
+{    
 	NUnit3("./src/**/bin/**/Release/*.Tests.dll", new NUnit3Settings()
-	{
-		Results = testResults
-	});
+    {
+        Results = testResults
+    });
+    
+    if (isAppVeyor)
+    {
+        var environment = BuildSystem.AppVeyor.Environment;
+        var baseUri = EnvironmentVariable("APPVEYOR_URL").TrimEnd('/');
+        string url = string.Format("{0}/api/testresults/nunit3/{1}", baseUri, environment.JobId);
+        
+        Information("Uploading test results to " + url);
+        
+        //using (var webClient = new System.Net.WebClient())
+        //    webClient.UploadFile(url, testResults);
+    }
 });
 
 Task("Inspect")

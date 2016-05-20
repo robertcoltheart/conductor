@@ -3,6 +3,10 @@ build_script:
 
 test: off
 
+artifacts:
+  - path: artifacts\*.xml
+  - path: artifacts\*.nupkg
+
 notifications:
   - provider: Email
     on_build_success: false
