@@ -1,6 +1,6 @@
 #addin "nuget:?package=Cake.DocFx&version=0.1.6"
 
-#tool "nuget:?package=GitVersion.CommandLine&version=3.5.4"
+#tool "nuget:?package=GitVersionTask=3.5.4"
 #tool "nuget:?package=NUnit.ConsoleRunner&version=3.2.1"
 
 //////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-# Conductor [![Travis](https://img.shields.io/travis/robertcoltheart/Conductor.svg)](https://travis-ci.org/robertcoltheart/Conductor) [![NuGet](https://img.shields.io/nuget/v/Conductor.svg)](https://www.nuget.org/packages/Conductor) 
+# Conductor [![Travis](https://img.shields.io/travis/robertcoltheart/Conductor.svg)](https://travis-ci.org/robertcoltheart/Conductor) [![AppVeyor](https://img.shields.io/appveyor/robertcoltheart/Conductor.svg)](https://appveyor/project/robertcoltheart/Conductor) [![NuGet](https://img.shields.io/nuget/v/Conductor.svg)](https://www.nuget.org/packages/Conductor) 
 A simple framework for building modular applications.
 
 ## Usage
