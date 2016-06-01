@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Conductor</id>
+        <version>$version$</version>
+        <title>Conductor</title>
+        <authors>Robert Coltheart</authors>
+        <owners>Robert Coltheart</owners>
+		<licenseUrl>https://github.com/robertcoltheart/Conductor/raw/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/robertcoltheart/Conductor</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>A simple framework for building modular applications.</description>
+		<summary>A simple framework for building modular applications.</summary>
+        <tags>module modular framework</tags>
+    </metadata>
+
+    <files>
+		<file src="Conductor/bin/Release/Conductor.dll" target="lib\net45" />
+		<file src="Conductor/bin/Release/Conductor.xml" target="lib\net45" />
+    </files>
+</package>
