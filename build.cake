@@ -44,12 +44,15 @@ Task("Versioning")
     .IsDependentOn("Clean")
     .Does(() => 
 {
-    var result = GitVersion(new GitVersionSettings
+    if (!IsRunningOnUnix())
     {
-        UpdateAssemblyInfo = true
-    });
+        var result = GitVersion(new GitVersionSettings
+        {
+            UpdateAssemblyInfo = true
+        });
 
-    version = result.NuGetVersion;
+        version = result.NuGetVersion;
+    }
 });
 
 Task("Build")
