@@ -7,6 +7,7 @@
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
 var target = Argument("target", "Default");
+var nugetApiKey = Argument("nugetapikey", EnvironmentVariable("NUGET_API_KEY"));
 
 //////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
@@ -42,6 +43,7 @@ Task("Restore")
 
 Task("Versioning")
     .IsDependentOn("Clean")
+    .WithCriteria(() => !BuildSystem.IsLocalBuild)
     .Does(() => 
 {
     if (!IsRunningOnUnix())
@@ -114,7 +116,7 @@ Task("Publish")
 
     NuGetPush(package, new NuGetPushSettings
     {
-        ApiKey = "API key"
+        ApiKey = nugetApiKey
     });
 });
 
