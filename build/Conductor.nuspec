@@ -9,8 +9,8 @@
         <licenseUrl>https://github.com/robertcoltheart/Conductor/raw/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/robertcoltheart/Conductor</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A simple framework for building modular applications.</description>
-        <summary>A simple framework for building modular applications.</summary>
+        <description>A framework for building modular applications.</description>
+        <summary>A framework for building modular applications.</summary>
         <tags>module modular framework</tags>
     </metadata>
 
