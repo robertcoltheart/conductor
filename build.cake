@@ -44,17 +44,15 @@ Task("Restore")
 Task("Versioning")
     .IsDependentOn("Clean")
     .WithCriteria(() => !BuildSystem.IsLocalBuild)
+    .WithCriteria(() => !IsRunningOnUnix())
     .Does(() => 
 {
-    if (!IsRunningOnUnix())
+    var result = GitVersion(new GitVersionSettings
     {
-        var result = GitVersion(new GitVersionSettings
-        {
-            UpdateAssemblyInfo = true
-        });
+        UpdateAssemblyInfo = true
+    });
 
-        version = result.NuGetVersion;
-    }
+    version = result.NuGetVersion;
 });
 
 Task("Build")
