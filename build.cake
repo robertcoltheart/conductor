@@ -1,4 +1,5 @@
 #addin "nuget:?package=Cake.DocFx&version=0.1.6"
+#addin "nuget:?package=Cake.ReSharperReports&version=0.3.1"
 
 #tool "nuget:?package=GitVersion.CommandLine&version=3.5.4"
 #tool "nuget:?package=NUnit.ConsoleRunner&version=3.2.1"
@@ -16,7 +17,6 @@ var version = "1.0.0";
 
 var artifacts = Directory("./artifacts");
 var solution = File("./src/Conductor.sln");
-var testResults = artifacts + File("TestResults.xml");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -73,6 +73,8 @@ Task("Test")
     .IsDependentOn("Build")
     .Does(() => 
 {
+    var testResults = artifacts + File("TestResults.xml");
+    
     NUnit3("./src/**/bin/**/Release/*.Tests.dll", new NUnit3Settings
     {
         Results = testResults
