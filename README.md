@@ -1,5 +1,5 @@
 # Conductor [![Travis](https://img.shields.io/travis/robertcoltheart/Conductor.svg)](https://travis-ci.org/robertcoltheart/Conductor) [![AppVeyor](https://img.shields.io/appveyor/ci/robertcoltheart/Conductor.svg)](https://ci.appveyor.com/project/robertcoltheart/Conductor) [![NuGet](https://img.shields.io/nuget/v/Conductor.svg)](https://www.nuget.org/packages/Conductor) 
-A simple framework for building modular applications.
+A framework for building modular applications.
 
 ## Usage
 Install the package from NuGet with `nuget install Conductor`.
