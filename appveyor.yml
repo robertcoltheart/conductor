@@ -1,6 +1,8 @@
 # Set dummy version, as it will be replaced by GitVersion
 version: x-{build}
 
+skip_branch_with_pr: true
+
 build_script:
   - ps: .\build.ps1
 
