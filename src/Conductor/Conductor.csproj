@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
+    <Authors>Robert Coltheart</Authors>
+    <Company />
+    <Description>A framework for building modular applications.</Description>
+    <PackageLicenseUrl>https://github.com/robertcoltheart/Conductor/raw/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/robertcoltheart/Conductor</PackageProjectUrl>
+    <PackageTags>module modular framework</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
