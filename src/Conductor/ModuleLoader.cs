@@ -20,17 +20,14 @@ namespace Conductor
         /// <param name="moduleFactory">The <see cref="IModule"/> creation func that returns an <see cref="IModule"/> instance from a given type.</param>
         public ModuleLoader(Func<Type, IModule> moduleFactory)
         {
-            if (moduleFactory == null)
-                throw new ArgumentNullException(nameof(moduleFactory));
-
-            _moduleFactory = moduleFactory;
+            _moduleFactory = moduleFactory ?? throw new ArgumentNullException(nameof(moduleFactory));
         }
 
         /// <summary>
         /// Gets all the type names that are registered.
         /// </summary>
         /// <value>The modules in the registry.</value>
-        public IEnumerable<Type> ModuleTypes => _moduleTypes.AsReadOnly();
+        public IEnumerable<Type> ModuleTypes => _moduleTypes.ToArray();
 
         /// <summary>
         /// Adds a module type specified by a <see cref="Type"/> to the <see cref="ModuleLoader"/>.
