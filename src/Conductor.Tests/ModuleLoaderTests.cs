@@ -1,40 +1,40 @@
 ﻿using System;
-using System.Linq;
-using NUnit.Framework;
+using Xunit;
 
 namespace Conductor
 {
-    [TestFixture]
     public class ModuleLoaderTests
     {
-        [Test]
+        [Fact]
         public void NullConstructorThrows()
         {
-            Assert.That(() => new ModuleLoader(null), Throws.ArgumentNullException);
+            var exception = Record.Exception(() => new ModuleLoader(null));
+
+            Assert.IsType<ArgumentNullException>(exception);
         }
 
-        [Test]
+        [Fact]
         public void InitialiseTypePassedToCretaor()
         {
             var module = new MockModule();
             Type type = null;
 
-            Func<Type, IModule> action = x =>
+            IModule Action(Type x)
             {
                 type = x;
 
                 return module;
-            };
+            }
 
-            var loader = new ModuleLoader(action);
+            var loader = new ModuleLoader(Action);
             loader.Add(typeof (object));
 
             loader.Initialize();
 
-            Assert.That(type, Is.EqualTo(typeof(object)));
+            Assert.Equal(typeof(object), type);
         }
 
-        [Test]
+        [Fact]
         public void InitialiseCalledOnModule()
         {
             var module = new MockModule();
@@ -44,10 +44,10 @@ namespace Conductor
 
             loader.Initialize();
 
-            Assert.That(module.InitializeCalled, Is.True);
+            Assert.True(module.InitializeCalled);
         }
 
-        [Test]
+        [Fact]
         public void InnerErrorInInitialiseRaisesModuleInitialiseException()
         {
             var module = new InvalidModule();
@@ -55,62 +55,73 @@ namespace Conductor
             var loader = new ModuleLoader(x => module);
             loader.Add(typeof(object));
 
-            Assert.That(() => loader.Initialize(), Throws.TypeOf<InitializeModuleException>().And.InnerException.TypeOf<InvalidOperationException>());
+            var exception = Record.Exception(() => loader.Initialize());
+
+            Assert.IsType<InitializeModuleException>(exception);
+            Assert.IsType<InvalidOperationException>(exception.InnerException);
         }
 
-        [Test]
+        [Fact]
         public void NullModuleReturnedThrows()
         {
             var loader = new ModuleLoader(x => null);
             loader.Add(typeof(object));
 
-            Assert.That(() => loader.Initialize(), Throws.TypeOf<InitializeModuleException>());
+            var exception = Record.Exception(() => loader.Initialize());
+
+            Assert.IsType<InitializeModuleException>(exception);
         }
 
-        [Test]
+        [Fact]
         public void InitializeAfterInitializedThrows()
         {
             var loader = new ModuleLoader(x => null);
             loader.Initialize();
 
-            Assert.That(() => loader.Initialize(), Throws.InvalidOperationException);
+            var exception = Record.Exception(() => loader.Initialize());
+
+            Assert.IsType<InvalidOperationException>(exception);
         }
 
-        [Test]
+        [Fact]
         public void CreatesWithEmptyModules()
         {
             var loader = new ModuleLoader(x => null);
 
-            Assert.That(loader.ModuleTypes, Is.Not.Null);
-            Assert.That(loader.ModuleTypes.Any(), Is.False);
+            Assert.NotNull(loader.ModuleTypes);
+            Assert.Empty(loader.ModuleTypes);
         }
 
-        [Test]
+        [Fact]
         public void NullAddArgumentThrows()
         {
             var loader = new ModuleLoader(x => null);
 
-            Assert.That(() => loader.Add(null), Throws.ArgumentNullException);
+            var exception = Record.Exception(() => loader.Add(null));
+
+            Assert.IsType<ArgumentNullException>(exception);
         }
 
-        [Test]
+        [Fact]
         public void AddExistingModuleThrows()
         {
             var loader = new ModuleLoader(x => null);
 
             loader.Add(typeof(object));
 
-            Assert.That(() => loader.Add(typeof(object)), Throws.InvalidOperationException);
+            var exception = Record.Exception(() => loader.Add(typeof(object)));
+
+            Assert.IsType<InvalidOperationException>(exception);
         }
 
-        [Test]
+        [Fact]
         public void AddedModuleIsVisibleInCatalog()
         {
             var loader = new ModuleLoader(x => null);
 
             loader.Add(typeof(object));
 
-            Assert.That(loader.ModuleTypes.Contains(typeof(object)), Is.True);
+            Assert.Contains(typeof(object), loader.ModuleTypes);
         }
 
         private class MockModule : IModule
