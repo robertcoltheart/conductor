@@ -5,7 +5,7 @@ os:
   - linux
 
 dist: trusty
-dotnet: 1.0.4
+dotnet: 2.0.0
 
 branches:
   only:
@@ -16,6 +16,6 @@ before_script:
 
 script:
   - ./build.sh
-
+  
 notifications: 
   email: false
