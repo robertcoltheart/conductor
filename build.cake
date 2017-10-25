@@ -65,7 +65,7 @@ Task("Versioning")
 
 Task("Build")
     .IsDependentOn("Versioning")
-    .IsDependentOn("Restore")    
+    .IsDependentOn("Restore")
     .Does(() => 
 {
     CreateDirectory(artifacts);
