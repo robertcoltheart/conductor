@@ -5,7 +5,7 @@
 A framework for building modular applications.
 
 ## Usage
-Install the package from NuGet with `nuget install Conductor`.
+Install the package from NuGet with `dotnet add package Conductor`.
 
 Modules can implement the `IModule` interface in order to be loaded by the module loader.
 
