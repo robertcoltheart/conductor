@@ -9,10 +9,11 @@ namespace Conductor
     /// </summary>
     public class ModuleLoader : IModuleLoader, IModuleRegistry
     {
-        private readonly Func<Type, IModule> _moduleFactory;
+        private readonly Func<Type, IModule> moduleFactory;
 
-        private readonly List<Type> _moduleTypes = new List<Type>();
-        private bool _initialized;
+        private readonly List<Type> moduleTypes = new List<Type>();
+
+        private bool initialized;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModuleLoader"/> class.
@@ -20,14 +21,14 @@ namespace Conductor
         /// <param name="moduleFactory">The <see cref="IModule"/> creation func that returns an <see cref="IModule"/> instance from a given type.</param>
         public ModuleLoader(Func<Type, IModule> moduleFactory)
         {
-            _moduleFactory = moduleFactory ?? throw new ArgumentNullException(nameof(moduleFactory));
+            this.moduleFactory = moduleFactory ?? throw new ArgumentNullException(nameof(moduleFactory));
         }
 
         /// <summary>
         /// Gets all the type names that are registered.
         /// </summary>
         /// <value>The modules in the registry.</value>
-        public IEnumerable<Type> ModuleTypes => _moduleTypes.ToArray();
+        public IEnumerable<Type> ModuleTypes => moduleTypes.ToArray();
 
         /// <summary>
         /// Adds a module type specified by a <see cref="Type"/> to the <see cref="ModuleLoader"/>.
@@ -37,12 +38,16 @@ namespace Conductor
         public IModuleRegistry Add(Type moduleType)
         {
             if (moduleType == null)
+            {
                 throw new ArgumentNullException(nameof(moduleType), Resources.Argument_Null);
+            }
 
-            if (_moduleTypes.Contains(moduleType))
+            if (moduleTypes.Contains(moduleType))
+            {
                 throw new InvalidOperationException(Resources.InvalidOperation_ModuleTypeExists);
+            }
 
-            _moduleTypes.Add(moduleType);
+            moduleTypes.Add(moduleType);
 
             return this;
         }
@@ -53,21 +58,27 @@ namespace Conductor
         /// <exception cref="InvalidOperationException">Modules are already initialized.</exception>
         public void Initialize()
         {
-            if (_initialized)
+            if (initialized)
+            {
                 throw new InvalidOperationException(Resources.InvalidOperation_ModulesInitialized);
+            }
 
-            foreach (Type moduleType in ModuleTypes)
+            foreach (var moduleType in ModuleTypes)
+            {
                 InitializeModule(moduleType);
+            }
 
-            _initialized = true;
+            initialized = true;
         }
 
         private void InitializeModule(Type moduleType)
         {
-            IModule module = _moduleFactory(moduleType);
+            var module = moduleFactory(moduleType);
 
             if (module == null)
+            {
                 throw new InitializeModuleException(string.Format(Resources.InitializeModule_NullModule, moduleType));
+            }
 
             try
             {

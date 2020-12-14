@@ -1,4 +1,7 @@
-# Conductor [![Travis](https://img.shields.io/travis/robertcoltheart/Conductor.svg)](https://travis-ci.org/robertcoltheart/Conductor) [![AppVeyor](https://img.shields.io/appveyor/ci/robertcoltheart/Conductor.svg)](https://ci.appveyor.com/project/robertcoltheart/Conductor) [![NuGet](https://img.shields.io/nuget/v/Conductor.svg)](https://www.nuget.org/packages/Conductor) 
+# Conductor
+
+[![NuGet](https://img.shields.io/nuget/v/Conductor?style=for-the-badge)](https://www.nuget.org/packages/Conductor) [![Build](https://img.shields.io/github/workflow/status/robertcoltheart/Conductor/build?style=for-the-badge)](https://github.com/robertcoltheart/Conductor/actions?query=workflow:build) [![License](https://img.shields.io/github/license/robertcoltheart/Conductor?style=for-the-badge)](https://github.com/robertcoltheart/Conductor/blob/master/LICENSE)
+
 A framework for building modular applications.
 
 ## Usage

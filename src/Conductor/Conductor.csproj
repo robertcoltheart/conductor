@@ -1,17 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
-    <Authors>Robert Coltheart</Authors>
-    <Company />
-    <Description>A framework for building modular applications.</Description>
-    <PackageLicenseUrl>https://github.com/robertcoltheart/Conductor/raw/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/robertcoltheart/Conductor</PackageProjectUrl>
-    <PackageTags>module modular framework</PackageTags>
-  </PropertyGroup>
+    <TargetFrameworks>netstandard1.0;netstandard2.0</TargetFrameworks>
+    <Version>1.0.0</Version>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.0\Conductor.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <Authors>Robert Coltheart</Authors>
+    <Description>A framework for building modular applications.</Description>
+    <PackageProjectUrl>https://github.com/robertcoltheart/Conductor</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>module modular framework</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

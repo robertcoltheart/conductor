@@ -14,7 +14,7 @@ namespace Conductor
         }
 
         [Fact]
-        public void InitialiseTypePassedToCretaor()
+        public void InitialiseTypePassedToCreator()
         {
             var module = new MockModule();
             Type type = null;
