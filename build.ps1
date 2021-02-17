@@ -10,7 +10,7 @@ if ($null -eq (Get-Command "dotnet" -ErrorAction Ignore)) {
 Push-Location (Split-Path $MyInvocation.MyCommand.Definition)
 
 try {
-    & dotnet run --project build --no-launch-profile -- $args
+    & dotnet run --project build --no-launch-profile --configuration Release -- $args
 }
 finally {
     Pop-Location
