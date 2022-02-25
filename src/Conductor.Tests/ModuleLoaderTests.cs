@@ -8,7 +8,7 @@ namespace Conductor
         [Fact]
         public void NullConstructorThrows()
         {
-            var exception = Record.Exception(() => new ModuleLoader(null));
+            var exception = Record.Exception(() => new ModuleLoader(null!));
 
             Assert.IsType<ArgumentNullException>(exception);
         }
@@ -39,7 +39,7 @@ namespace Conductor
         {
             var module = new MockModule();
 
-            var loader = new ModuleLoader(x => module);
+            var loader = new ModuleLoader(_ => module);
             loader.Add(typeof (object));
 
             loader.Initialize();
@@ -52,7 +52,7 @@ namespace Conductor
         {
             var module = new InvalidModule();
 
-            var loader = new ModuleLoader(x => module);
+            var loader = new ModuleLoader(_ => module);
             loader.Add(typeof(object));
 
             var exception = Record.Exception(() => loader.Initialize());
@@ -64,7 +64,7 @@ namespace Conductor
         [Fact]
         public void NullModuleReturnedThrows()
         {
-            var loader = new ModuleLoader(x => null);
+            var loader = new ModuleLoader(_ => null);
             loader.Add(typeof(object));
 
             var exception = Record.Exception(() => loader.Initialize());
@@ -75,7 +75,7 @@ namespace Conductor
         [Fact]
         public void InitializeAfterInitializedThrows()
         {
-            var loader = new ModuleLoader(x => null);
+            var loader = new ModuleLoader(_ => null);
             loader.Initialize();
 
             var exception = Record.Exception(() => loader.Initialize());
@@ -86,7 +86,7 @@ namespace Conductor
         [Fact]
         public void CreatesWithEmptyModules()
         {
-            var loader = new ModuleLoader(x => null);
+            var loader = new ModuleLoader(_ => null);
 
             Assert.NotNull(loader.ModuleTypes);
             Assert.Empty(loader.ModuleTypes);
@@ -95,9 +95,9 @@ namespace Conductor
         [Fact]
         public void NullAddArgumentThrows()
         {
-            var loader = new ModuleLoader(x => null);
+            var loader = new ModuleLoader(_ => null);
 
-            var exception = Record.Exception(() => loader.Add(null));
+            var exception = Record.Exception(() => loader.Add(null!));
 
             Assert.IsType<ArgumentNullException>(exception);
         }
@@ -105,7 +105,7 @@ namespace Conductor
         [Fact]
         public void AddExistingModuleThrows()
         {
-            var loader = new ModuleLoader(x => null);
+            var loader = new ModuleLoader(_ => null);
 
             loader.Add(typeof(object));
 
@@ -117,7 +117,7 @@ namespace Conductor
         [Fact]
         public void AddedModuleIsVisibleInCatalog()
         {
-            var loader = new ModuleLoader(x => null);
+            var loader = new ModuleLoader(_ => null);
 
             loader.Add(typeof(object));
 

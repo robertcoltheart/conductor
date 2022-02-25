@@ -11,7 +11,7 @@ namespace Conductor
     {
         private readonly Func<Type, IModule> moduleFactory;
 
-        private readonly List<Type> moduleTypes = new List<Type>();
+        private readonly List<Type> moduleTypes = new();
 
         private bool initialized;
 
