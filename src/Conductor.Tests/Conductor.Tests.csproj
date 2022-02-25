@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>    
-    <TargetFramework>netcoreapp3.1</TargetFramework>    
+  <PropertyGroup>
+    <TargetFrameworks>net462;net6.0</TargetFrameworks>
     <RootNamespace>Conductor</RootNamespace>
+    <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
