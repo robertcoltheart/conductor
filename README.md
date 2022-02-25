@@ -1,6 +1,6 @@
 # Conductor
 
-[![NuGet](https://img.shields.io/nuget/v/Conductor?style=for-the-badge)](https://www.nuget.org/packages/Conductor) [![Build](https://img.shields.io/github/workflow/status/robertcoltheart/Conductor/build?style=for-the-badge)](https://github.com/robertcoltheart/Conductor/actions?query=workflow:build) [![License](https://img.shields.io/github/license/robertcoltheart/Conductor?style=for-the-badge)](https://github.com/robertcoltheart/Conductor/blob/master/LICENSE)
+[![NuGet](https://img.shields.io/nuget/v/Conductor?style=for-the-badge)](https://www.nuget.org/packages/Conductor) [![License](https://img.shields.io/github/license/robertcoltheart/Conductor?style=for-the-badge)](https://github.com/robertcoltheart/Conductor/blob/master/LICENSE)
 
 A framework for building modular applications.
 
