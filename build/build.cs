@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 using static Bullseye.Targets;
 using static SimpleExec.Command;
 
-var version = GetGitVersion();
+var version = await GetGitVersion();
 
 Target("clean", () =>
 {
@@ -51,13 +52,13 @@ Target("publish", DependsOn("package"), () =>
 
 Target("default", DependsOn("package"));
 
-RunTargetsAndExit(args);
+await RunTargetsAndExitAsync(args);
 
-GitVersion GetGitVersion()
+async Task<GitVersion> GetGitVersion()
 {
     Run("dotnet", "tool restore");
 
-    var value = Read("dotnet", "dotnet-gitversion");
+    var (value, _) = await ReadAsync("dotnet", "dotnet-gitversion");
 
     return JsonSerializer.Deserialize<GitVersion>(value);
 }
