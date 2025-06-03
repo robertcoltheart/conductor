@@ -35,7 +35,7 @@ Target("build", dependsOn: ["restore"], () =>
 
 Target("test", dependsOn: ["build"], () =>
 {
-    Run("dotnet", "test --configuration Release --no-restore --no-build");
+    Run("dotnet", "test --configuration Release --no-restore --no-build -- RunConfiguration.TargetPlatform=x64");
 });
 
 Target("package", dependsOn: ["build", "test"], () =>
