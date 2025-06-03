@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace Conductor
+namespace Conductor.Tests
 {
     public class InitializeModuleExceptionTests
     {
