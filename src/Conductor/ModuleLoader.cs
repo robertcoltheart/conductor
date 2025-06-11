@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Conductor.Properties;
 
 namespace Conductor
 {
@@ -39,12 +38,12 @@ namespace Conductor
         {
             if (moduleType == null)
             {
-                throw new ArgumentNullException(nameof(moduleType), Resources.Argument_Null);
+                throw new ArgumentNullException(nameof(moduleType));
             }
 
             if (moduleTypes.Contains(moduleType))
             {
-                throw new InvalidOperationException(Resources.InvalidOperation_ModuleTypeExists);
+                throw new InvalidOperationException("Module registry already contains this type.");
             }
 
             moduleTypes.Add(moduleType);
@@ -60,7 +59,7 @@ namespace Conductor
         {
             if (initialized)
             {
-                throw new InvalidOperationException(Resources.InvalidOperation_ModulesInitialized);
+                throw new InvalidOperationException("Modules are already initialized.");
             }
 
             foreach (var moduleType in ModuleTypes)
@@ -77,7 +76,7 @@ namespace Conductor
 
             if (module == null)
             {
-                throw new InitializeModuleException(string.Format(Resources.InitializeModule_NullModule, moduleType));
+                throw new InitializeModuleException($"Module of type {moduleType} does not implement IModule.");
             }
 
             try
@@ -86,7 +85,7 @@ namespace Conductor
             }
             catch (Exception ex)
             {
-                throw new InitializeModuleException(Resources.InitializeModule_ErrorInitializing, ex);
+                throw new InitializeModuleException("Error initializing module.", ex);
             }
         }
     }

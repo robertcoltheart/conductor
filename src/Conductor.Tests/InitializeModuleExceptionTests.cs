@@ -1,33 +1,30 @@
-﻿using System;
-using Xunit;
-
-namespace Conductor
+﻿namespace Conductor.Tests
 {
     public class InitializeModuleExceptionTests
     {
-        [Fact]
-        public void IsTypeOfException()
+        [Test]
+        public async Task IsTypeOfException()
         {
             var exception = new InitializeModuleException();
 
-            Assert.IsAssignableFrom<Exception>(exception);
+            await Assert.That(exception).IsAssignableTo<Exception>();
         }
 
-        [Fact]
-        public void InnerExceptionSet()
+        [Test]
+        public async Task InnerExceptionSet()
         {
             var innerException = new Exception();
             var exception = new InitializeModuleException("msg", innerException);
 
-            Assert.Same(innerException, exception.InnerException);
+            await Assert.That(innerException).IsSameReferenceAs(exception.InnerException);
         }
 
-        [Fact]
-        public void HasMessage()
+        [Test]
+        public async Task HasMessage()
         {
             var exception = new InitializeModuleException("msg");
 
-            Assert.Equal("msg", exception.Message);
+            await Assert.That(exception.Message).IsEqualTo("msg");
         }
     }
 }
