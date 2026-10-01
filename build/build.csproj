@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Bullseye" Version="6.2.0" />
-    <PackageReference Include="SimpleExec" Version="13.0.0" />
+    <PackageReference Include="SimpleExec" Version="13.1.0" />
   </ItemGroup>
 
 </Project>
